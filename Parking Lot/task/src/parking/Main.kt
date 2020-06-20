@@ -2,10 +2,22 @@ package parking
 
 class Car(val number: String, val color: String)
 
-class ParkingLot(private val size: Int) {
-    private val spots = Array<Car?>(size) { null }
+class ParkingLot() {
+    private var size: Int = 0
+    private lateinit var spots: Array<Car?>
+
+    constructor(size: Int) {
+        this.size = size
+        spots = Array(size) { null }
+        if (size > 0) {
+            println("Created a parking lot with $size spots.")
+        }
+    }
 
     fun park(car: Car) {
+        if (!hasCreated()) {
+            return
+        }
         val spot = spots.indexOf(null)
         if (spot == -1) {
             println("Sorry, the parking lot is full.")
@@ -15,7 +27,17 @@ class ParkingLot(private val size: Int) {
         }
     }
 
+    private fun hasCreated() = if (spots.isEmpty()) {
+        println("Sorry, a parking lot has not been created.")
+        false
+    } else {
+        true
+    }
+
     fun leave(spot: Int) {
+        if (!hasCreated()) {
+            return
+        }
         if (spots[spot - 1] == null) {
             println("There is no car in spot $spot.")
         } else {
@@ -23,27 +45,35 @@ class ParkingLot(private val size: Int) {
             println("Spot $spot is free.")
         }
     }
+
+    fun status() {
+        if (!hasCreated()) {
+            return
+        }
+        var isEmpty = true
+        for ((spot, car) in spots.withIndex()) {
+            if (car != null) {
+                isEmpty = false
+                println("${spot + 1} ${car.number} ${car.color}")
+            }
+        }
+        if (isEmpty) {
+            println("Parking lot is empty.")
+        }
+    }
 }
 
 fun main() {
     val scanner = java.util.Scanner(System.`in`)
-    val parkingLot = ParkingLot(20)
+    var parkingLot = ParkingLot(0)
 
-    while(true) {
-        val command =  scanner.next()
-
-        if (command == "exit") {
-            return
-        }
-
-        if (command == "park") {
-            parkingLot.park(Car(scanner.next(), scanner.next()))
-            continue
-        }
-
-        if (command == "leave") {
-            parkingLot.leave(scanner.nextInt())
-            continue
+    while (true) {
+        when (scanner.next()) {
+            "exit" -> return
+            "create" -> parkingLot = ParkingLot(scanner.nextInt())
+            "park" -> parkingLot.park(Car(scanner.next(), scanner.next()))
+            "leave" -> parkingLot.leave(scanner.nextInt())
+            "status" -> parkingLot.status()
         }
     }
 }

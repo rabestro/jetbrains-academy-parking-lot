@@ -15,10 +15,13 @@
             <option value="$PROJECT_DIR$/Problems/A small version of the Battleship game" />
             <option value="$PROJECT_DIR$/Problems/Area printer" />
             <option value="$PROJECT_DIR$/Problems/Balance checker" />
+            <option value="$PROJECT_DIR$/Problems/Bank account" />
             <option value="$PROJECT_DIR$/Problems/Beyond the word" />
             <option value="$PROJECT_DIR$/Problems/Complex numbers" />
             <option value="$PROJECT_DIR$/Problems/Composition" />
             <option value="$PROJECT_DIR$/Problems/First digit" />
+            <option value="$PROJECT_DIR$/Problems/Point2D" />
+            <option value="$PROJECT_DIR$/Problems/Reddit" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
