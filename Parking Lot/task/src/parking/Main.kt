@@ -2,13 +2,10 @@ package parking
 
 class Car(val number: String, val color: String)
 
-class ParkingLot() {
-    private var size: Int = 0
-    private lateinit var spots: Array<Car?>
+class ParkingLot(size: Int) {
+    private var spots: Array<Car?> = Array(size) { null }
 
-    constructor(size: Int) {
-        this.size = size
-        spots = Array(size) { null }
+    init {
         if (size > 0) {
             println("Created a parking lot with $size spots.")
         }
