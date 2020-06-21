@@ -20,8 +20,10 @@
             <option value="$PROJECT_DIR$/Problems/Complex numbers" />
             <option value="$PROJECT_DIR$/Problems/Composition" />
             <option value="$PROJECT_DIR$/Problems/First digit" />
+            <option value="$PROJECT_DIR$/Problems/House inheritance" />
             <option value="$PROJECT_DIR$/Problems/Point2D" />
             <option value="$PROJECT_DIR$/Problems/Reddit" />
+            <option value="$PROJECT_DIR$/Problems/equals() check" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
