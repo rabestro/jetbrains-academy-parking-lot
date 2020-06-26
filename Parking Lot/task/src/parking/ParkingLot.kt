@@ -10,9 +10,6 @@ class ParkingLot(size: Int) {
     }
 
     fun park(car: Car) {
-        if (!hasCreated()) {
-            return
-        }
         val spot = spots.indexOf(null)
         if (spot == -1) {
             println("Sorry, the parking lot is full.")
@@ -22,17 +19,10 @@ class ParkingLot(size: Int) {
         }
     }
 
-    private fun hasCreated() = if (spots.isEmpty()) {
-        println("Sorry, a parking lot has not been created.")
-        false
-    } else {
-        true
-    }
+
+    fun isNotCreated() = spots.isEmpty()
 
     fun leave(spot: Int) {
-        if (!hasCreated()) {
-            return
-        }
         if (spots[spot - 1] == null) {
             println("There is no car in spot $spot.")
         } else {
@@ -42,9 +32,6 @@ class ParkingLot(size: Int) {
     }
 
     fun status() {
-        if (!hasCreated()) {
-            return
-        }
         var isEmpty = true
         for ((spot, car) in spots.withIndex()) {
             if (car != null) {
@@ -54,6 +41,38 @@ class ParkingLot(size: Int) {
         }
         if (isEmpty) {
             println("Parking lot is empty.")
+        }
+    }
+
+    fun spotByReg(number: String) {
+        TODO("Not yet implemented")
+    }
+
+    fun regByColor(color: String) {
+        val result = spots.filter { it!!.color.toUpperCase() == color.toUpperCase() }
+        if (result.isEmpty()) {
+            println("No cars with color $color were found.")
+        } else {
+            println(result.joinToString(", "))
+        }
+    }
+
+    fun spotByColor(color: String) {
+        var isEmpty = true
+        for ((spot, car) in spots.withIndex()) {
+            if (car != null) {
+                isEmpty = false
+                println("${spot + 1} ${car.number} ${car.color}")
+            }
+        }
+        if (isEmpty) {
+            println("No cars with color $color were found.")
+        }
+        val result = spots.filter { it!!.color.toUpperCase() == color.toUpperCase() }
+        if (result.isEmpty()) {
+            println("No cars with color $color were found.")
+        } else {
+            println(result.joinToString(", "))
         }
     }
 }
