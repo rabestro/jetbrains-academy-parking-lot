@@ -10,7 +10,7 @@ fun main() {
         when (args[0]) {
             "exit" -> return
             "create" -> {
-                parkingLot = ParkingLot(scanner.nextInt())
+                parkingLot = ParkingLot(args[1].toInt())
             }
             else -> if (parkingLot.isNotCreated()) {
                 println("Sorry, a parking lot has not been created.")

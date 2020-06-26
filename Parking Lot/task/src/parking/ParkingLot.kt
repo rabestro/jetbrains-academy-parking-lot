@@ -44,11 +44,20 @@ class ParkingLot(size: Int) {
     }
 
     fun spotByReg(number: String) {
-        TODO("Not yet implemented")
+        for ((spot, car) in spots.withIndex()) {
+            if (car != null && car.number == number) {
+                println(spot + 1)
+                return
+            }
+        }
+        println("No cars with registration number $number were found.")
     }
 
     fun regByColor(color: String) {
-        val result = spots.filter { it!!.color.toUpperCase() == color.toUpperCase() }
+        val result = spots
+                .filterNotNull()
+                .filter { it.color.toUpperCase() == color.toUpperCase() }
+                .map { it.number }
         if (result.isEmpty()) {
             println("No cars with color $color were found.")
         } else {
@@ -59,19 +68,17 @@ class ParkingLot(size: Int) {
     fun spotByColor(color: String) {
         var isEmpty = true
         for ((spot, car) in spots.withIndex()) {
-            if (car != null) {
+            if (car != null && car.color.toLowerCase() == color.toLowerCase()) {
+                if (!isEmpty) {
+                    print(", ")
+                }
                 isEmpty = false
-                println("${spot + 1} ${car.number} ${car.color}")
+                print("${spot + 1}")
             }
         }
         if (isEmpty) {
-            println("No cars with color $color were found.")
+            print("No cars with color $color were found.")
         }
-        val result = spots.filter { it!!.color.toUpperCase() == color.toUpperCase() }
-        if (result.isEmpty()) {
-            println("No cars with color $color were found.")
-        } else {
-            println(result.joinToString(", "))
-        }
+        println()
     }
 }
