@@ -19,7 +19,6 @@ class ParkingLot(size: Int) {
         }
     }
 
-
     fun isNotCreated() = spots.isEmpty()
 
     fun leave(spot: Int) {
